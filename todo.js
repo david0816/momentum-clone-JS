@@ -4,7 +4,20 @@ const toDoList = document.querySelector(".js-toDoList");
 
 const TODOS_LS = "toDos";
 
-const toDos = [];
+let toDos = [];
+
+function deleteToDo(event) {
+  const btn = event.target;
+  const removeli = btn.parentNode;
+  toDoList.removeChild(removeli);
+  const cleanToDos = toDos.filter(function(toDo) {
+    console.log(toDo.id, removeli.id);
+    return toDo.id !== parseInt(removeli.id);
+    // parseInt() -> string을 숫자로 변환
+  });
+  toDos = cleanToDos;
+  saveToDos();
+}
 
 function saveToDos() {
   localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
@@ -13,12 +26,13 @@ function saveToDos() {
 function paintToDo(text) {
   const li = document.createElement("li");
   const delBtn = document.createElement("button");
-  delBtn.innerText = "❌";
   const span = document.createElement("span");
   const newId = toDos.length + 1;
+  delBtn.innerText = "❌";
+  delBtn.addEventListener("click", deleteToDo);
   span.innerText = text;
-  li.appendChild(delBtn);
   li.appendChild(span);
+  li.appendChild(delBtn);
   li.id = newId;
   toDoList.appendChild(li);
   const toDoObj = {
