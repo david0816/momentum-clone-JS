@@ -6,6 +6,14 @@ const TODOS_LS = "toDos";
 
 let toDos = [];
 
+function lineToDo(event) {
+  const checkbox = event.target;
+  const li = checkbox.parentNode;
+  const span = li.children[1];
+  const SHOWING_LINE = "showing-line";
+  span.classList.add(SHOWING_LINE);
+}
+
 function deleteToDo(event) {
   const btn = event.target;
   const removeli = btn.parentNode;
@@ -27,12 +35,17 @@ function paintToDo(text) {
   const li = document.createElement("li");
   const delBtn = document.createElement("button");
   const span = document.createElement("span");
+  const input = document.createElement("input");
   const newId = toDos.length + 1;
-  delBtn.innerText = "❌";
+  input.type = "checkbox";
+  input.addEventListener("click", lineToDo);
+  delBtn.innerText = "✕";
   delBtn.addEventListener("click", deleteToDo);
   span.innerText = text;
+  li.appendChild(input);
   li.appendChild(span);
   li.appendChild(delBtn);
+
   li.id = newId;
   toDoList.appendChild(li);
   const toDoObj = {

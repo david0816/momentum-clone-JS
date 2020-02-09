@@ -38,6 +38,10 @@ h1 {
   display: block;
 }
 
+.showing-line {
+  text-decoration: line-through;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -92,10 +96,10 @@ h1 {
 li {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 400px;
+  justify-content: space-between;
+  width: 300px;
   font-size: 25px;
-  font-weight: 700;
+  font-weight: 600;
   margin: 3px;
   padding: 3;
 }
@@ -104,9 +108,10 @@ button {
   background: 0;
   margin-left: 10px;
   padding: 1px;
-  border-radius: 20px;
+  font-size: 15px;
   border: none;
   outline: none;
+  color: white;
 }
 
 .js-toDoList {
@@ -126,7 +131,12 @@ button {
 .js-weather {
   width: 75px;
   margin: 10px;
+  margin-right: 50px;
   font-size: 20px;
   font-weight: 700;
   color: #fff;
+}
+
+input::placeholder {
+  color: white;
 }
